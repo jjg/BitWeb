@@ -4,7 +4,25 @@
 
 var http = require('http');
 
+CACHROOT = '~/.bitweb/cache/'
+
+var hostcache = ['bitwebblog.gullicksonlaboratories.com', 'www.fargo.com'];
+
 http.createServer(function(request, response) {
+
+  var requestHost = request.headers['host'];
+
+  // debug
+  console.log(requestHost);
+
+  // if the host is in the cache, direct request to local copy
+  if(hostcache.indexOf(requestHost) != -1){
+
+    // TODO: start server (if necissary)
+
+    // TODO: redirect request
+
+  }
 
   var proxy = http.createClient(80, request.headers['host'])
   var proxy_request = proxy.request(request.method, request.url, request.headers);
